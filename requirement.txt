@@ -1,0 +1,12 @@
+Version depends on system's supported: 
+
+flask
+tensorflow, keras
+Werkzeug
+pillow
+pymongo
+pymongo
+selenium
+numpy
+docker
+MongoDB
