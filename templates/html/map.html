@@ -1,0 +1,223 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Embedded Map</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    &lt;!&ndash; Input box for location name &ndash;&gt;-->
+<!--    <input type="text" id="locationInput" placeholder="Enter location name" >-->
+
+<!--    &lt;!&ndash; Button to generate map &ndash;&gt;-->
+<!--    <button onclick="generateMapLink()">Generate Map</button>-->
+
+<!--    &lt;!&ndash; Default embedded map for Tamil Nadu &ndash;&gt;-->
+<!--    <div id="mapContainer">-->
+<!--    </div>-->
+
+<!--    <script>-->
+<!--        function generateMapLink() {-->
+<!--            var locationInput = document.getElementById('locationInput').value;-->
+
+<!--            // Replace spaces with '+'-->
+<!--            locationInput = locationInput.replace(/\s+/g, '+');-->
+
+<!--            // Specify the location and zoom level (adjust as needed)-->
+<!--            var apiKey = 'AIzaSyAym3TGUXY-gx6KrrEemHY57ZqRa6w58ZI'; // Replace with your Google Maps API key-->
+<!--            var mapLink = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${locationInput}&zoom=15`;-->
+
+<!--            // Create an iframe element for embedding the map-->
+<!--            var iframe = document.createElement('iframe');-->
+<!--            iframe.width = '600';-->
+<!--            iframe.height = '600';-->
+<!--            iframe.frameBorder = '0';-->
+<!--            iframe.style.border = '0';-->
+
+<!--            iframe.src = mapLink;-->
+
+<!--            iframe.allowfullscreen = true;-->
+
+<!--            // Clear previous map if any-->
+<!--            document.getElementById('mapContainer').innerHTML = '';-->
+
+<!--            // Append the iframe to the map container-->
+<!--            document.getElementById('mapContainer').appendChild(iframe);-->
+<!--        }-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded Map</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Set a background color */
+            margin: 0;
+            padding: 20px;
+            text-align: center; /* Center-align content */
+        }
+
+        h2 {
+            color: #333; /* Set heading color */
+        }
+
+        #locationInput {
+            width: 70%; /* Decrease input box size */
+            padding: 10px;
+            margin-top: 10px;
+            box-sizing: border-box;
+            border: 2px solid #3498db; /* Set input box border color */
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 15px; /* Increase button size */
+            margin-top: 10px;
+            background-color: #2ecc71; /* Set button background color */
+            color: #fff; /* Set button text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #mapContainer {
+            margin-top: 20px;
+            background-color: #ecf0f1; /* Set map container background color */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #map {
+            /* Your map styles */
+            width: 100%;
+            height: 300px; /* Adjust the height as needed */
+        }
+
+        #resultContainer {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #result-heading {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .checkbox-container {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+        .checkbox-label {
+            margin-right: 10px;
+	   font-size : 25px;
+        }
+
+        .custom-checkbox {
+    width: 30px;
+    height: 30px;
+    appearance: none;
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    margin-right: 5px; /* Adjust spacing between checkbox and label */
+}
+
+
+.custom-checkbox {
+    width: 30px;
+    height: 30px;
+    appearance: none;
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+}
+
+.custom-checkbox:checked:after {
+    content: '\2713'; /* Checkmark symbol */
+    font-size: 24px; /* Larger font size */
+    color: #2ecc71; /* Green color */
+ font-weight: bold; /* Increase font weight for wider tick mark */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+        .custom-checkbox:checked:after {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div style="background-color: #87CEEB; height: 200px; border-radius: 10px; padding: 20px; margin-bottom: 0px;">
+    <h2>NeuralNetFloodPredictor</h2>
+
+    <!-- Input box for location name -->
+    <input type="text" id="locationInput" placeholder="Enter location name" autocomplete="on" >
+
+    <!-- Button to generate map -->
+    <button onclick="generateMapLink()">Generate Map</button>
+</div>
+<!-- Default embedded map for Tamil Nadu -->
+<div id="mapContainer"></div>
+
+<div id="resultContainer">
+    <!-- Result of Flood Prediction heading and Checkboxes -->
+    <h3 id="result-heading">Result of Flood Prediction</h3>
+
+    <div class="checkbox-container">
+        <label class="checkbox-label">Flood happen</label>
+        <input type="checkbox" class="custom-checkbox" id="floodHappenCheckbox">
+    </div>
+
+    <div class="checkbox-container">
+        <label class="checkbox-label">Flood not happen</label>
+        <input type="checkbox" class="custom-checkbox" id="floodNotHappenCheckbox">
+    </div>
+</div>
+
+<script>
+    function generateMapLink() {
+        var locationInput = document.getElementById('locationInput').value;
+
+        // Replace spaces with '+'
+        locationInput = locationInput.replace(/\s+/g, '+');
+
+        // Specify the location and zoom level (adjust as needed)
+        var apiKey = 'AIzaSyAym3TGUXY-gx6KrrEemHY57ZqRa6w58ZI'; // Replace with your Google Maps API key
+        var mapLink = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${locationInput}&zoom=15`;
+
+        // Create an iframe element for embedding the map
+        var iframe = document.createElement('iframe');
+        iframe.width = '600';
+        iframe.height = '400'; /* Adjust map height as needed */
+        iframe.frameBorder = '0';
+        iframe.style.border = '0';
+
+        iframe.src = mapLink;
+
+        iframe.allowfullscreen = true;
+
+        // Clear previous map if any
+        document.getElementById('mapContainer').innerHTML = '';
+
+        // Append the iframe to the map container
+        document.getElementById('mapContainer').appendChild(iframe);
+    }
+</script>
+</body>
+</html>
