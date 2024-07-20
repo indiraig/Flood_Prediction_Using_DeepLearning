@@ -1,7 +1,11 @@
 # NeuralNetFloodPredictor Using Deep Learning
-This project aims to predict the possiblities of flood occurrence using CNN for image classifications and RNN for sequential weather data analysis.
-Flood and Non-Flood images were collected from https://www.kaggle.com/datasets/ankit1743/skyview-an-aerial-landscape-dataset.
-Open source Weather API: https://openweathermap.org/api
+This project aims to predict flood occurrences by combining CNN for image classification and RNN for sequential weather data analysis.
+
+**Image Data:** Flood and non-flood images sourced from the SkyView Dataset on Kaggle.
+
+**Google Maps Integration:** Automated image capture of locations using the Google Maps API and Selenium for web automation.
+
+**Weather Data:** Real-time weather data fetched using the OpenWeather API.
 
 **Home Page:**
 ![image](https://github.com/user-attachments/assets/73b8960e-b7e8-4eb5-94b0-ee4fa1bfed60)
